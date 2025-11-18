@@ -9,3 +9,10 @@ logging:
   format: "[%(asctime)s] [%(levelname)s] [%(name)s] %(message)s"
 server:
   port: 8000
+
+jwt:
+  secret: "local_dev_secret_change_me"
+  algorithm: "HS256"
+  issuer: "note-clone"
+  audience: "note-clone-users"
+  access_token_ttl_minutes: 60

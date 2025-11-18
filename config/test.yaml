@@ -1,12 +1,19 @@
 database:
-  enabled: false
+  enabled: true
   host: localhost
   port: 5432
   user: user
   password: password
-  dbname: notedb
+  dbname: notedb_test
 logging:
   level: INFO
   format: "[%(asctime)s] [%(levelname)s] [%(name)s] %(message)s"
 server:
   port: 8000
+
+jwt:
+  secret: "test_secret_for_ci_only"
+  algorithm: "HS256"
+  issuer: "note-clone"
+  audience: "note-clone-users"
+  access_token_ttl_minutes: 60
