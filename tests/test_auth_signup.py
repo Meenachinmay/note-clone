@@ -46,3 +46,24 @@ def test_signup_duplicate_email_returns_400():
     assert second.status_code == 400
     body = second.json()
     assert body.get("detail") in ("Email already registered", "Invalid email")
+
+
+def test_signup_invalid_email_returns_400():
+    client = _get_client()
+    payload = {"email": "invalid-email", "password": "ValidPass123"}
+
+    resp = client.post("/auth/signup", json=payload)
+    assert resp.status_code == 400
+    assert resp.json().get("detail") == "Invalid email"
+
+
+def test_signup_short_password_returns_400():
+    client = _get_client()
+    payload = {"email": "shortpass@example.com", "password": "short"}
+
+    resp = client.post("/auth/signup", json=payload)
+    assert resp.status_code == 400
+    assert (
+        resp.json().get("detail")
+        == "Password must be at least 8 characters long"
+    )
