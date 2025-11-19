@@ -4,3 +4,7 @@ PyYAML
 psycopg2-binary
 pytest
 httpx
+
+# Auth dependencies
+PyJWT
+passlib[bcrypt]
